@@ -30,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void openEventsList(){
+    public void openEventsList(int event_id){
         Intent intent = new Intent(this, EventsActivity.class);
-        intent.putExtra("event_id", current_id);
+        intent.putExtra("event_id", event_id);
         startActivity(intent);
     }
 
