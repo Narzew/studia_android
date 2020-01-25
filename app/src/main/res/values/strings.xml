@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="title_activity_cities">Select city</string>
+    <string name="title_activity_events">Events in </string>
+    <string name="event_name">Name</string>
+    <string name="event_description">Description</string>
+    <string name="event_author">Author</string>
+    <string name="event_location">Location</string>
+    <string name="event_timing">Date</string>
+    <string name="select_city">Select city</string>
+    <string name="events_in">Events in </string>
+    <string name="add_event">Add event</string>
+</resources>
