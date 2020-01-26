@@ -17,8 +17,7 @@
         <activity android:name=".EventDetailsActivity"
             android:label="@string/event_details" />
         <activity
-            android:name=".EventsActivity"
-            android:label="@string/title_activity_events" />
+            android:name=".EventsActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
