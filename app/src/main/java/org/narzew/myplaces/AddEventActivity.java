@@ -55,10 +55,11 @@ public class AddEventActivity extends AppCompatActivity implements DatePickerDia
     }
 
     public void addEvent(View v){
+        // id 0 in object, id will be given after adding the object in the database.
         Event e = new Event(0, city_id, event_name.getText().toString(), event_author.getText().toString(),event_description.getText().toString(), event_location.getText().toString(), event_timing.getText().toString());
         db.addEvent(e);
         // After adding event, go to main activity
-        Toast.makeText(this, "Event added successfully!", Toast.LENGTH_LONG);
+        Toast.makeText(this, getResources().getString(R.string.event_added_ok), Toast.LENGTH_LONG);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

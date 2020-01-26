@@ -12,4 +12,6 @@
     <string name="events_in">Events in </string>
     <string name="add_event">Add event</string>
     <string name="add_event_in">Add event in </string>
+    <string name="event_added_ok">"Event added successfully!</string>
+    <string name="event_added_fail">Failed to add event!</string>
 </resources>
