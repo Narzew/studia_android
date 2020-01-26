@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -18,7 +19,7 @@ public class AddEventActivity extends AppCompatActivity implements DatePickerDia
     Integer city_id;
     String city_name;
     EditText event_name, event_description, event_author, event_location;
-    EditText event_timing;
+    TextView event_timing;
     DBHelper db;
 
     @Override
@@ -35,7 +36,7 @@ public class AddEventActivity extends AppCompatActivity implements DatePickerDia
         event_description = (EditText)findViewById(R.id.textDescription);
         event_author = (EditText)findViewById(R.id.textAuthor);
         event_location = (EditText)findViewById(R.id.textLocation);
-        event_timing = (EditText)findViewById(R.id.textDate);
+        event_timing = (TextView)findViewById(R.id.textDate);
 
         db = new DBHelper(this);
 
@@ -49,6 +50,7 @@ public class AddEventActivity extends AppCompatActivity implements DatePickerDia
     }
 
     private void showDatePickerDialog(){
+        Log.d(Config.LOG_TAG,"Calling Date Picker");
         Calendar c = Calendar.getInstance();
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,this,c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.show();
@@ -56,6 +58,7 @@ public class AddEventActivity extends AppCompatActivity implements DatePickerDia
 
     public void addEvent(View v){
         // id 0 in object, id will be given after adding the object in the database.
+
         Event e = new Event(0, city_id, event_name.getText().toString(), event_author.getText().toString(),event_description.getText().toString(), event_location.getText().toString(), event_timing.getText().toString());
         db.addEvent(e);
         // After adding event, go to main activity
@@ -66,6 +69,7 @@ public class AddEventActivity extends AppCompatActivity implements DatePickerDia
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        month = month+1; // Add 1 to month to get normal month (1 for January instead of 0)
         String date = dayOfMonth+"/"+month+"/"+year;
         event_timing.setText(date);
     }

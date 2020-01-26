@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         ListView listCities=(ListView) findViewById(R.id.listCities);
         DBHelper db = new DBHelper(this);
 
+        cityList.clear();
         Cursor cities = db.getCities();
         Cursor city_data = db.getCities();
         if (city_data != null && city_data.moveToFirst()) {

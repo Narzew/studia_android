@@ -127,25 +127,43 @@ public class DBHelper {
 
     public Cursor getAllEvents(){
         SQLiteDatabase database = openDatabase();
-        return database.rawQuery("select id, city_id, name, author, description, location, timing from events", null, null);
+        Cursor cursor = database.rawQuery("select id, city_id, name, author, description, location, timing from events", null, null);
+        return cursor;
     }
 
     public Cursor getEvent(int id){
         SQLiteDatabase database = openDatabase();
-        return database.rawQuery("select id, city_id, name, author, description, location, timing from events where id = "+id+" limit 1", null, null);
+        Cursor cursor = database.rawQuery("select id, city_id, name, author, description, location, timing from events where id = "+id+" limit 1", null, null);
+        cursor.moveToFirst();
+        return cursor;
     }
 
     public Event getEventByIdAsObject(int id){
         SQLiteDatabase database = openDatabase();
         Cursor cursor = database.rawQuery("select id, city_id, name, author, description, location, timing from events where id = "+id+" limit 1", null, null);
+        cursor.moveToFirst();
         Event result = new Event(cursor.getInt(0),cursor.getInt(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5), cursor.getString(6));
+        database.close();
         return result;
     }
 
     public void addEvent(Event e){
+        // Add one to ID
+        /*
+        Alternative way, no longer used
+        SharedPreferences sharedpreferences = context.getSharedPreferences(Config.PREFS_NAME, Context.MODE_PRIVATE);
+        sharedpreferences.edit().putInt("events_nr", sharedpreferences.getInt("events_nr",10)+1);
+        Integer new_event_id = sharedpreferences.getInt("events_nr",10);
+        */
+        // Open DB connection
         SQLiteDatabase database = openDatabase();
-        database.execSQL(String.format("insert into events (city_id, name, author, description, location, timing) values (%d, '%s', '%s', '%s', '%s', '%s')",
-                e.getCity_id(), e.getName(), e.getAuthor(), e.getDescription(), e.getLocation(), e.getDate()));
+        String sql = String.format("insert into events (city_id, name, author, description, location, timing) values (%d, '%s', '%s', '%s', '%s', '%s')",
+                e.getCity_id(), e.getName(), e.getAuthor(), e.getDescription(), e.getLocation(), e.getDate());
+        //String sql = String.format("insert into events (id, city_id, name, author, description, location, timing) values (%d, %d '%s', '%s', '%s', '%s', '%s')",
+        //        new_event_id, e.getCity_id(), e.getName(), e.getAuthor(), e.getDescription(), e.getLocation(), e.getDate());
+        Log.d(Config.LOG_TAG,"SQL: "+sql);
+        database.execSQL(sql);
+        database.close();
     }
 
 }

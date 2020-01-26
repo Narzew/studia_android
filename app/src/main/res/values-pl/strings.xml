@@ -16,4 +16,5 @@
     <string name="select_event">Wybierz wydarzenie</string>
     <string name="title_activity_cities">Wybierz miasto</string>
     <string name="title_activity_events">Wydarzenia w</string>
+    <string name="select_date">Wybierz datę</string>
 </resources>

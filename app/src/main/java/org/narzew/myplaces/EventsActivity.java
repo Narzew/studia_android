@@ -41,6 +41,7 @@ public class EventsActivity extends AppCompatActivity {
 
         // Fill events
 
+        eventList.clear();
         Cursor event_data = db.getCityEvents(city_id);
         if (event_data != null && event_data.moveToFirst()) {
             do {

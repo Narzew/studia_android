@@ -38,17 +38,13 @@ public class EventDetailsActivity extends AppCompatActivity {
         // Wypełnienie danymi
 
         Log.d(Config.LOG_TAG, "Event ID: " + event_id);
-        Cursor event_data = dbhelper.getEvent(event_id);
-        if (event_data != null && event_data.moveToFirst()) {
+        Event event = dbhelper.getEventByIdAsObject(event_id);
             // id=0, city_id=1, name=2, author=3, description=4, location=5, timing=6
-            event_name.setText(event_data.getString(2));
-            event_author.setText(event_data.getString(3));
-            event_description.setText(event_data.getString(4));
-            event_location.setText(event_data.getString(5));
-            event_timing.setText(event_data.getString(6));
-
-        }
-
+        event_name.setText(event.getName());
+        event_author.setText(event.getAuthor());
+        event_description.setText(event.getDescription());
+        event_location.setText(event.getLocation());
+        event_timing.setText(event.getDate());
         setTitle(event_name.getText());
 
     }

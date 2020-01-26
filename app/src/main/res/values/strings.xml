@@ -15,4 +15,5 @@
     <string name="event_added_ok">"Event added successfully!</string>
     <string name="event_added_fail">Failed to add event!</string>
     <string name="event_details">Event details</string>
+    <string name="select_date">Select date</string>
 </resources>
