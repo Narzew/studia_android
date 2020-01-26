@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyPlaces</string>
+    <string name="app_name">My Places</string>
     <string name="title_activity_cities">Select city</string>
     <string name="title_activity_events">Events in </string>
     <string name="event_name">Name</string>

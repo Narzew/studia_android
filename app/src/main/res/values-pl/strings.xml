@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Moje miejsca</string>
+    <string name="add_event">Dodaj wydarzenie</string>
+    <string name="add_event_in">Dodaj wydarzenie w</string>
+    <string name="event_added_fail">Nie udało się dodać wydarzenia!</string>
+    <string name="event_added_ok">Wydarzenie zostało dodane!</string>
+    <string name="event_author">Autor</string>
+    <string name="event_description">Opis</string>
+    <string name="event_details">Szczegóły wydarzenia</string>
+    <string name="event_location">Miejsce</string>
+    <string name="event_name">Nazwa</string>
+    <string name="event_timing">Data</string>
+    <string name="events_in">Wydarzenia w</string>
+    <string name="select_city">Wybierz miasto</string>
+    <string name="select_event">Wybierz wydarzenie</string>
+    <string name="title_activity_cities">Wybierz miasto</string>
+    <string name="title_activity_events">Wydarzenia w</string>
+</resources>
