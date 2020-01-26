@@ -9,21 +9,17 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class EventsListAdapter extends ArrayAdapter {
 
     private Context context;
-    private final Integer[] idArray;
-    private final String[] nameArray;
-    private final String[] locationArray;
-    private final String[] dateArray;
+    private final ArrayList<Event> eventArray;
 
-    public EventsListAdapter(Context contextParam, Integer[] idArrayParam, String[] nameArrayParam, String[] dateArrayParam, String[] locationArrayParam){
-        super(contextParam,R.layout.events_row , nameArrayParam);
+    public EventsListAdapter(Context contextParam, ArrayList<Event> eventArray){
+        super(contextParam,R.layout.events_row , eventArray);
         this.context = contextParam;
-        this.idArray = idArrayParam;
-        this.nameArray = nameArrayParam;
-        this.locationArray = locationArrayParam;
-        this.dateArray = dateArrayParam;
+        this.eventArray = eventArray;
     }
 
     public View getView(int position, View view, ViewGroup parent) {
@@ -36,9 +32,9 @@ public class EventsListAdapter extends ArrayAdapter {
         TextView list_eventLocation = (TextView) rowView.findViewById(R.id.list_eventLocation);
 
         //this code sets the values of the objects to values from the arrays
-        list_eventName.setText(nameArray[position]);
-        list_eventDate.setText(dateArray[position]);
-        list_eventLocation.setText(locationArray[position]);
+        list_eventName.setText(eventArray.get(position).getName());
+        list_eventDate.setText(eventArray.get(position).getDate());
+        list_eventLocation.setText(eventArray.get(position).getLocation());
         return rowView;
     }
 
