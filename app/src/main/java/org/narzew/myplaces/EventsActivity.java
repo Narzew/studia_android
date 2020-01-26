@@ -36,7 +36,7 @@ public class EventsActivity extends AppCompatActivity {
         DBHelper db = new DBHelper(this);
         city_id = extras.getInt("city_id");
         city_name = extras.getString("city_name");
-        setTitle(getResources().getString(R.string.events_in) + city_name);
+        setTitle(getResources().getString(R.string.events_in) + " " + city_name);
         ListView listEvents=(ListView) findViewById(R.id.listEvents);
 
         // Fill events
