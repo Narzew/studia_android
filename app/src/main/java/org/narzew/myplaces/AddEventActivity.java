@@ -18,7 +18,7 @@ public class AddEventActivity extends AppCompatActivity implements DatePickerDia
     Integer city_id;
     String city_name;
     EditText event_name, event_description, event_author, event_location;
-    TextView event_timing;
+    EditText event_timing;
     DBHelper db;
 
     @Override

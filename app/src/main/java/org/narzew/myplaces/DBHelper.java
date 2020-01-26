@@ -122,7 +122,7 @@ public class DBHelper {
 
     public Cursor getCityEvents(int city_id){
         SQLiteDatabase database = openDatabase();
-        return database.rawQuery("select id, city_id, name, author, description, location, timing from events where id = "+city_id, null, null);
+        return database.rawQuery("select id, city_id, name, author, description, location, timing from events where city_id = "+city_id, null, null);
     }
 
     public Cursor getAllEvents(){
@@ -133,6 +133,13 @@ public class DBHelper {
     public Cursor getEvent(int id){
         SQLiteDatabase database = openDatabase();
         return database.rawQuery("select id, city_id, name, author, description, location, timing from events where id = "+id+" limit 1", null, null);
+    }
+
+    public Event getEventByIdAsObject(int id){
+        SQLiteDatabase database = openDatabase();
+        Cursor cursor = database.rawQuery("select id, city_id, name, author, description, location, timing from events where id = "+id+" limit 1", null, null);
+        Event result = new Event(cursor.getInt(0),cursor.getInt(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5), cursor.getString(6));
+        return result;
     }
 
     public void addEvent(Event e){
