@@ -8,6 +8,7 @@
     <string name="event_location">Location</string>
     <string name="event_timing">Date</string>
     <string name="select_city">Select city</string>
+    <string name="select_event">Select event</string>
     <string name="events_in">Events in </string>
     <string name="add_event">Add event</string>
 </resources>

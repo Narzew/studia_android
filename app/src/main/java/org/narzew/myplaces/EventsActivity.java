@@ -39,8 +39,10 @@ public class EventsActivity extends AppCompatActivity {
 
         Cursor event_data = db.getCityEvents(city_id);
         if (event_data != null && event_data.moveToFirst()) {
-            // id=0, city_id=1, name=2, author=3, description=4, location=5, timing=6
-            eventList.add(new Event(event_data.getInt(0),event_data.getInt(1),event_data.getString(2),event_data.getString(3),event_data.getString(4),event_data.getString(5),event_data.getString(6)));
+            do {
+                // id=0, city_id=1, name=2, author=3, description=4, location=5, timing=6
+                eventList.add(new Event(event_data.getInt(0), event_data.getInt(1), event_data.getString(2), event_data.getString(3), event_data.getString(4), event_data.getString(5), event_data.getString(6)));
+            } while (event_data.moveToNext());
         }
 
         // Add onClick listener to a list
@@ -57,7 +59,6 @@ public class EventsActivity extends AppCompatActivity {
                 startActivity(eventDetails);
             }
         });
-
 
         // Toolbar actions
 

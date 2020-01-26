@@ -23,7 +23,6 @@ public class EventsListAdapter extends ArrayAdapter {
     }
 
     public View getView(int position, View view, ViewGroup parent) {
-        int current_id = 0;
         View rowView=LayoutInflater.from(context).inflate(R.layout.events_row, null,true);
 
         //this code gets references to objects in the listview_row.xml file

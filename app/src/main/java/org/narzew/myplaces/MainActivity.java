@@ -31,8 +31,10 @@ public class MainActivity extends AppCompatActivity {
         Cursor cities = db.getCities();
         Cursor city_data = db.getCities();
         if (city_data != null && city_data.moveToFirst()) {
-            // id=0, city_id=1, name=2, author=3, description=4, location=5, timing=6
-            cityList.add(new City(city_data.getInt(0),city_data.getString(1)));
+            do {
+                // id=0, city_id=1, name=2, author=3, description=4, location=5, timing=6
+                cityList.add(new City(city_data.getInt(0), city_data.getString(1)));
+            } while (city_data.moveToNext());
         }
 
         CitiesListAdapter citiesadapter = new CitiesListAdapter(this, cityList);
@@ -47,9 +49,9 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
 
                 City city = cityList.get(position);
-                Intent eventDetails = new Intent(context, EventsActivity.class);
-                eventDetails.putExtra("city_id", city.getId());
-                startActivity(eventDetails);
+                Intent eventList = new Intent(context, EventsActivity.class);
+                eventList.putExtra("city_id", city.getId());
+                startActivity(eventList);
             }
         });
 
