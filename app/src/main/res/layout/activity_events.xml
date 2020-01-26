@@ -27,7 +27,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right|bottom"
-        app:backgroundTint="@color/lightBlue"
+        android:src="@drawable/plus"
+        app:backgroundTint="@color/white"
         app:borderWidth="0dp"
         app:elevation="8dp"
         app:fabSize="normal" />

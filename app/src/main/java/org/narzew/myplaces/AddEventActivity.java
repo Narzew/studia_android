@@ -3,11 +3,14 @@ package org.narzew.myplaces;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.Calendar;
 
 public class AddEventActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
@@ -50,6 +53,10 @@ public class AddEventActivity extends AppCompatActivity implements DatePickerDia
     public void addEvent(View v){
         Event e = new Event(0, city_id, event_name.getText().toString(), event_author.getText().toString(),event_description.getText().toString(), event_location.getText().toString(), event_timing.getText().toString());
         db.addEvent(e);
+        // After adding event, go to main activity
+        Toast.makeText(this, "Event added successfully!", Toast.LENGTH_LONG);
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     @Override
