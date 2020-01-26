@@ -9,17 +9,17 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class CitiesListAdapter extends ArrayAdapter {
 
     private final Context context;
-    private final Integer[] idArray;
-    private final String[] nameArray;
+    private final ArrayList<City> cityArray;
 
-    public CitiesListAdapter(Context contextParam, Integer[] idArrayParam, String[] nameArrayParam){
-        super(contextParam,R.layout.cities_row , nameArrayParam);
+    public CitiesListAdapter(Context contextParam, ArrayList<City> cityArrayParam){
+        super(contextParam,R.layout.cities_row , cityArrayParam);
         this.context = contextParam;
-        this.idArray = idArrayParam;
-        this.nameArray = nameArrayParam;
+        this.cityArray = cityArrayParam;
     }
 
     public View getView(int position, View view, ViewGroup parent) {
@@ -30,7 +30,7 @@ public class CitiesListAdapter extends ArrayAdapter {
         TextView listCityName  = (TextView) rowView.findViewById(R.id.list_cityName);
 
         //this code sets the values of the objects to values from the arrays
-        listCityName.setText(nameArray[position]);
+        listCityName.setText(cityArray.get(position).getName());
         return rowView;
     }
 

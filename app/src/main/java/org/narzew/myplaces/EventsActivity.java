@@ -51,11 +51,5 @@ public class EventsActivity extends AppCompatActivity {
         });
     }
 
-    /* Fill ListView with events */
-
-    private static void fillEvents(){
-
-
-    }
 
 }

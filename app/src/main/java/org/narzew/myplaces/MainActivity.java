@@ -9,11 +9,12 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     // ONLY FOR DEBUG PURPOSES
-    Integer[] idArray = {1, 2, 3, 4, 5, 6};
-    String[] nameArray = {"Sanok","Warszawa","Rzeszów","Lublin","Wrocław","Kraków" };
+    ArrayList<City> cityList = new ArrayList<City>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +25,13 @@ public class MainActivity extends AppCompatActivity {
         DBHelper db = new DBHelper(this);
 
         Cursor cities = db.getCities();
+        Cursor city_data = db.getCities();
+        if (city_data != null && city_data.moveToFirst()) {
+            // id=0, city_id=1, name=2, author=3, description=4, location=5, timing=6
+            cityList.add(new City(city_data.getInt(0),city_data.getString(1)));
+        }
 
-        CitiesListAdapter citiesadapter = new CitiesListAdapter(this, idArray, nameArray);
+        CitiesListAdapter citiesadapter = new CitiesListAdapter(this, cityList);
         listCities.setAdapter(citiesadapter);
 
     }
