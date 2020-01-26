@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -15,11 +17,13 @@ public class MainActivity extends AppCompatActivity {
 
     // ONLY FOR DEBUG PURPOSES
     ArrayList<City> cityList = new ArrayList<City>();
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        context = this;
 
         ListView listCities=(ListView) findViewById(R.id.listCities);
         DBHelper db = new DBHelper(this);
@@ -34,13 +38,21 @@ public class MainActivity extends AppCompatActivity {
         CitiesListAdapter citiesadapter = new CitiesListAdapter(this, cityList);
         listCities.setAdapter(citiesadapter);
 
-    }
+        // Add onClick listener to a list
 
-    public void openEventsList(int event_id){
-        Intent intent = new Intent(this, EventsActivity.class);
-        intent.putExtra("event_id", event_id);
-        startActivity(intent);
-    }
+        listCities.setClickable(true);
+        listCities.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+
+                City city = cityList.get(position);
+                Intent eventDetails = new Intent(context, EventsActivity.class);
+                eventDetails.putExtra("city_id", city.getId());
+                startActivity(eventDetails);
+            }
+        });
+
+    }
 
 }

@@ -1,5 +1,7 @@
 package org.narzew.myplaces;
 
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 
@@ -10,32 +12,52 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
 public class EventsActivity extends AppCompatActivity {
 
+    Integer city_id;
     Integer event_id;
     ArrayList<Event> eventList;
     Event event;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = this;
         setContentView(R.layout.activity_events);
         Bundle extras = getIntent().getExtras();
         DBHelper db = new DBHelper(this);
-        event_id = extras.getInt("event_id");
-        ListView listCities=(ListView) findViewById(R.id.listCities);
+        city_id = extras.getInt("city_id");
+        ListView listEvents=(ListView) findViewById(R.id.listEvents);
 
         // Fill events
 
-        Cursor event_data = db.getEvent(event_id);
+        Cursor event_data = db.getCityEvents(city_id);
         if (event_data != null && event_data.moveToFirst()) {
             // id=0, city_id=1, name=2, author=3, description=4, location=5, timing=6
             eventList.add(new Event(event_data.getInt(0),event_data.getInt(1),event_data.getString(2),event_data.getString(3),event_data.getString(4),event_data.getString(5),event_data.getString(6)));
         }
+
+        // Add onClick listener to a list
+
+        listEvents.setClickable(true);
+        listEvents.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+
+                Event event = eventList.get(position);
+                Intent eventDetails = new Intent(context, EventDetailsActivity.class);
+                eventDetails.putExtra("event_id", event.getId());
+                startActivity(eventDetails);
+            }
+        });
+
 
         // Toolbar actions
 
@@ -45,11 +67,11 @@ public class EventsActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent newEvent = new Intent(context, AddEventActivity.class);
+                newEvent.putExtra("city_id",city_id);
+                startActivity(newEvent);
             }
         });
     }
-
 
 }
