@@ -77,7 +77,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="27/01/20" />
+                android:text="27/01/20"
+                android:enabled="true" />
 
         <Button
             android:id="@+id/button_add"

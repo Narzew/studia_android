@@ -16,6 +16,7 @@ import java.util.Calendar;
 public class AddEventActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     Integer city_id;
+    String city_name;
     EditText event_name, event_description, event_author, event_location;
     TextView event_timing;
     DBHelper db;
@@ -24,8 +25,11 @@ public class AddEventActivity extends AppCompatActivity implements DatePickerDia
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event);
+
         Bundle bundle = getIntent().getExtras();
         city_id = bundle.getInt("city_id");
+        city_name = bundle.getString("city_name");
+        setTitle(getResources().getString(R.string.add_event_in) + " " + city_name);
 
         event_name = (EditText)findViewById(R.id.textName);
         event_description = (EditText)findViewById(R.id.textDescription);
@@ -39,7 +43,7 @@ public class AddEventActivity extends AppCompatActivity implements DatePickerDia
         findViewById(R.id.textDate).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-
+                showDatePickerDialog();
             }
         });
     }

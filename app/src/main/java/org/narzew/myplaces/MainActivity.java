@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         context = this;
 
+        setTitle(getResources().getString(R.string.select_city));
+
         ListView listCities=(ListView) findViewById(R.id.listCities);
         DBHelper db = new DBHelper(this);
 
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 City city = cityList.get(position);
                 Intent eventList = new Intent(context, EventsActivity.class);
                 eventList.putExtra("city_id", city.getId());
+                eventList.putExtra("city_name", city.getName());
                 startActivity(eventList);
             }
         });

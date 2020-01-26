@@ -49,6 +49,8 @@ public class EventDetailsActivity extends AppCompatActivity {
 
         }
 
+        setTitle(event_name.getText());
+
     }
 
 }

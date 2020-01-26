@@ -16,12 +16,14 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class EventsActivity extends AppCompatActivity {
 
     Integer city_id;
+    String city_name;
     Integer event_id;
-    ArrayList<Event> eventList;
+    ArrayList<Event> eventList = new ArrayList<Event>();
     Event event;
     Context context;
 
@@ -33,6 +35,8 @@ public class EventsActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         DBHelper db = new DBHelper(this);
         city_id = extras.getInt("city_id");
+        city_name = extras.getString("city_name");
+        setTitle(getResources().getString(R.string.events_in) + city_name);
         ListView listEvents=(ListView) findViewById(R.id.listEvents);
 
         // Fill events
@@ -44,6 +48,9 @@ public class EventsActivity extends AppCompatActivity {
                 eventList.add(new Event(event_data.getInt(0), event_data.getInt(1), event_data.getString(2), event_data.getString(3), event_data.getString(4), event_data.getString(5), event_data.getString(6)));
             } while (event_data.moveToNext());
         }
+
+        EventsListAdapter eventsListAdapter = new EventsListAdapter(this, eventList);
+        listEvents.setAdapter(eventsListAdapter);
 
         // Add onClick listener to a list
 
@@ -70,6 +77,7 @@ public class EventsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent newEvent = new Intent(context, AddEventActivity.class);
                 newEvent.putExtra("city_id",city_id);
+                newEvent.putExtra("city_name",city_name);
                 startActivity(newEvent);
             }
         });

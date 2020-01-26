@@ -50,7 +50,7 @@ public class DBHelper {
                 Log.d(Config.LOG_TAG, "Database up to date");
             }
         }
-        return SQLiteDatabase.openDatabase(dbFile.getPath(), null, SQLiteDatabase.OPEN_READONLY);
+        return SQLiteDatabase.openDatabase(dbFile.getPath(), null, SQLiteDatabase.OPEN_READWRITE);
     }
 
     private void copyDatabase(){
@@ -137,7 +137,7 @@ public class DBHelper {
 
     public void addEvent(Event e){
         SQLiteDatabase database = openDatabase();
-        database.execSQL(String.format("insert into events (city_id, name, author, description, location, timing) values (%d, '%s', '%s', '%s', '%s', '%s)",
+        database.execSQL(String.format("insert into events (city_id, name, author, description, location, timing) values (%d, '%s', '%s', '%s', '%s', '%s')",
                 e.getCity_id(), e.getName(), e.getAuthor(), e.getDescription(), e.getLocation(), e.getDate()));
     }
 
