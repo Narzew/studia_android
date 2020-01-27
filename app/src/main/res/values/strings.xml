@@ -16,4 +16,9 @@
     <string name="event_added_fail">Failed to add event!</string>
     <string name="event_details">Event details</string>
     <string name="select_date">Select date</string>
+    <string name="verify_event_name">Event name is not correct</string>
+    <string name="verify_event_location">Event location is not correct</string>
+    <string name="verify_event_author">Event author is not correct</string>
+    <string name="verify_event_description">Event description is not correct</string>
+    <string name="verify_event_timing">Event date is not set</string>
 </resources>

@@ -17,4 +17,9 @@
     <string name="title_activity_cities">Wybierz miasto</string>
     <string name="title_activity_events">Wydarzenia w</string>
     <string name="select_date">Wybierz datę</string>
+    <string name="verify_event_author">Autor wydarzenia jest nieprawidłowy</string>
+    <string name="verify_event_description">Opis wydarzenia jest nieprawidłowy</string>
+    <string name="verify_event_location">Lokacja wydarzenia jest nieprawidłowa</string>
+    <string name="verify_event_name">Nazwa wydarzenia jest nieprawidłowa</string>
+    <string name="verify_event_timing">Czas wydarzenia jest nieprawidłowy</string>
 </resources>
