@@ -6,6 +6,6 @@ public class Config {
     public static final String LOG_TAG = "MyPlaces"; // Log tag
     public static final String DB_PATH = "/data/data/org.narzew.myplaces/databases/myplaces.db"; // DB path
     public static final String DB_FOLDER = "/data/data/org.narzew.myplaces/databases"; // DB folder
-    public static final Integer DB_VERSION = 3; // Wersja bazy danych
+    public static final Integer DB_VERSION = 1; // Wersja bazy danych
     public static final Integer FIRST_ID = 4; // First db record ID after dummy records
 }

@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -149,14 +150,18 @@ public class DBHelper {
 
     public void addEvent(Event e){
         // Add one to ID
+
         SharedPreferences sharedpreferences = context.getSharedPreferences(Config.PREFS_NAME, Context.MODE_PRIVATE);
-        sharedpreferences.edit().putInt("events_nr", sharedpreferences.getInt("events_nr",Config.FIRST_ID)+1);
-        Integer new_event_id = sharedpreferences.getInt("events_nr",Config.FIRST_ID);
+        // Update event nr
+        Integer old_event_id = sharedpreferences.getInt("events_nr",Config.FIRST_ID);
+        Integer new_event_id = old_event_id+1;
+        sharedpreferences.edit().putInt("events_nr", new_event_id).commit();
+
         // Open DB connection
         SQLiteDatabase database = openDatabase();
         String sql = String.format("insert into events (id, city_id, name, author, description, location, timing) values (%d, %d, '%s', '%s', '%s', '%s', '%s')",
                 new_event_id, e.getCity_id(), e.getName(), e.getAuthor(), e.getDescription(), e.getLocation(), e.getDate());
-        Log.d(Config.LOG_TAG,"SQL: "+sql);
+        Log.d(Config.LOG_TAG, "SQL: " + sql);
         database.execSQL(sql);
         database.close();
     }
